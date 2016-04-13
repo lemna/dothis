@@ -48,20 +48,21 @@ generate_todolist <- function(filename = NULL){
     str_trim(side = "both")
   locations <- which(str_detect(string = contents,
                                 pattern = todo_list_keywords))
-  markers <- lapply(seq_along(todolist), function(x){
-    marker <- list()
-    marker$type <- "usage"
-    marker$file <- filename
-    marker$line <- locations[x]
-    marker$column <- 1
-    marker$message <- todolist[x]
-    return(marker)
-  })
-
-  rstudioapi::callFun("sourceMarkers",
-                      name = paste("To Do List for", filename),
-                      markers = markers,
-                      basePath = basePath)
+  if(length(todolist) > 0) {
+    markers <- lapply(seq_along(todolist), function(x){
+      marker <- list()
+      marker$type <- "usage"
+      marker$file <- filename
+      marker$line <- locations[x]
+      marker$column <- 1
+      marker$message <- todolist[x]
+      return(marker)
+    })
+    rstudioapi::callFun("sourceMarkers",
+                        name = paste("To Do List for", filename),
+                        markers = markers,
+                        basePath = basePath)
+  }
   return(invisible())
 }
 
