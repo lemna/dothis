@@ -1,4 +1,9 @@
-Name: "To Do" List
+Name: File "To Do" List
 Description: Generate a "To Do" List for the current file
 Binding: generate_todolistAddin
+Interactive: false
+
+Name: Project "To Do" List
+Description: Generate a "To Do" List for the current project
+Binding: generate_todolist_projectAddin
 Interactive: false
