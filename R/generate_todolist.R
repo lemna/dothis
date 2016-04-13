@@ -30,8 +30,9 @@ generate_todolist <- function(filename = NULL){
   rstudioapi::verifyAvailable()
   if(is.null(filename)){
     context <- rstudioapi::getActiveDocumentContext()
+    if (context$id == "#console") stop(call. = FALSE, "Select a file first")
     filename <- context$path
-    if(filename == '' ) stop(call. = FALSE, 'Save file first')
+    if(filename == '' ) stop(call. = FALSE, "Save file first")
     contents <- context$contents
   } else {
     contents <- readLines(filename)
