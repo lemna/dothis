@@ -1,0 +1,4 @@
+Name: "To Do" List
+Description: Generate a "To Do" List for the current file
+Binding: generate_todolistAddin
+Interactive: false

@@ -1,0 +1,11 @@
+Package: dothis
+Type: Package
+Title: Provides A Very Basic "To Do" List in Rstudio
+Version: 0.1.0
+Author: Peter Konings
+Maintainer: Peter Konings <lemna@users.noreply.github.com>
+Description: This package constructs a very basic "To Do" list in the Rstudio Markers pane.
+License: GPL (>= 3)
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Depends: stringr
