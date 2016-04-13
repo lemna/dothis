@@ -1,9 +1,11 @@
-#' Generate a "To Do" List in the markers pane
+#' Generate a "To Do" List in the Rstudio markers pane
 #'
-#' This function should never be called directly.
+#' This function looks for comments in the active document starting with the
+#' words 'todo' or 'fixme' and gathers them in the markers pane. This function
+#' should never be called directly - it is added as an item in the Addins menu.
 #'
 #' @return returns invisibly
-#' @import stringr
+#' @import rstudioapi stringr
 #' @export
 generate_todolistAddin <- function(){
   context <- rstudioapi::getActiveDocumentContext()

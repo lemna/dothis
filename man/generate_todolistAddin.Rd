@@ -2,7 +2,7 @@
 % Please edit documentation in R/generate_todolist.R
 \name{generate_todolistAddin}
 \alias{generate_todolistAddin}
-\title{Generate a "To Do" List in the markers pane}
+\title{Generate a "To Do" List in the Rstudio markers pane}
 \usage{
 generate_todolistAddin()
 }
@@ -10,6 +10,8 @@ generate_todolistAddin()
 returns invisibly
 }
 \description{
-This function should never be called directly.
+This function looks for comments in the active document starting with the
+words 'todo' or 'fixme' and gathers them in the markers pane. This function
+should never be called directly - it is added as an item in the Addins menu.
 }
 

@@ -8,4 +8,6 @@ Description: This package constructs a very basic "To Do" list in the Rstudio Ma
 License: GPL (>= 3)
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Depends: stringr
+Imports:
+  rstudioapi (>= 0.4),
+  stringr
