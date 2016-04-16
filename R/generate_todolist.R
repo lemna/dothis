@@ -28,11 +28,11 @@ generate_todolist_projectAddin <- function(){
 #' @rdname generate_todolistAddin
 generate_todolist <- function(filename = NULL){
   rstudioapi::verifyAvailable()
-  if(is.null(filename)){
+  if (is.null(filename)){
     context <- rstudioapi::getActiveDocumentContext()
     if (context$id == "#console") return(invisible())
     filename <- context$path
-    if(filename == '' ) stop(call. = FALSE, "Save file first")
+    if (filename == "" ) stop(call. = FALSE, "Save file first")
     contents <- context$contents
   } else {
     contents <- readLines(filename)
@@ -50,7 +50,7 @@ generate_todolist <- function(filename = NULL){
     locations <- which(str_detect(string = string, pattern = pattern))
     result <- lapply(seq_along(messages), function(x){
       marker <- list()
-      marker$type <- 'usage'
+      marker$type <- "usage"
       marker$file <- filename
       marker$line <- locations[x]
       marker$column <- 1
