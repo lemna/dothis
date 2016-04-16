@@ -30,7 +30,7 @@ generate_todolist <- function(filename = NULL){
   rstudioapi::verifyAvailable()
   if(is.null(filename)){
     context <- rstudioapi::getActiveDocumentContext()
-    if (context$id == "#console") stop(call. = FALSE, "Select a file first")
+    if (context$id == "#console") return(invisible())
     filename <- context$path
     if(filename == '' ) stop(call. = FALSE, "Save file first")
     contents <- context$contents
@@ -38,32 +38,34 @@ generate_todolist <- function(filename = NULL){
     contents <- readLines(filename)
   }
 
-  todo_list_keywords <- "(?is)(#+'* *todo:?)|(#+'* *fixme:?)"
+  todo_list_keywords <- c("(?is)(#+'* *todo:?)", "(?is)(#+'* *fixme:?)")
+  names(todo_list_keywords) <- c("To Do List", "Fix Me List")
 
   basePath <- rstudioapi::getActiveProject()
 
-  todolist <- str_subset(string = contents,
-                         pattern = todo_list_keywords) %>%
-    str_replace(pattern = todo_list_keywords,
-                replacement = "") %>%
-    str_trim(side = "both")
-  locations <- which(str_detect(string = contents,
-                                pattern = todo_list_keywords))
-  if(length(todolist) > 0) {
-    markers <- lapply(seq_along(todolist), function(x){
+  get_todo_lists <- function(string, pattern){
+    messages <- str_subset(string = string, pattern = pattern) %>%
+      str_replace(pattern = pattern, replacement = "") %>%
+      str_trim(side = "both")
+    locations <- which(str_detect(string = string, pattern = pattern))
+    result <- lapply(seq_along(messages), function(x){
       marker <- list()
-      marker$type <- "usage"
+      marker$type <- 'usage'
       marker$file <- filename
       marker$line <- locations[x]
       marker$column <- 1
-      marker$message <- todolist[x]
+      marker$message <- messages[x]
       return(marker)
     })
-    rstudioapi::callFun("sourceMarkers",
-                        name = paste("To Do List for", filename),
-                        markers = markers,
-                        basePath = basePath)
+    return(result)
   }
+
+  todolist <- lapply(todo_list_keywords, function(pattern)
+    get_todo_lists(string = contents, pattern = pattern))
+  lapply(seq_along(todolist),
+         function(x) rstudioapi::callFun("sourceMarkers",
+                                         name = names(todolist)[x],
+                                         markers = todolist[[x]],
+                                         basePath = basePath))
   return(invisible())
 }
-
