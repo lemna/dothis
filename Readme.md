@@ -12,3 +12,5 @@ Use the [devtools](https://github.com/hadley/devtools) package:
 ```R
 devtools::install_github('pkoki/dothis')
 ```
+Alternatively there is a binary for windows available at [AppVeyor](https://ci.appveyor.com/project/pkoki/dothis/build/artifacts). Download the zip file and install using `install.packages()`.
+
