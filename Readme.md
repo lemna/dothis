@@ -1,4 +1,4 @@
-# dothis [![Travis-CI Build Status](https://travis-ci.org/pkoki/dothis.svg?branch=master)](https://travis-ci.org/pkoki/dothis) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/apixoxrhv382cpst?svg=true)](https://ci.appveyor.com/project/pkoki/dothis)
+# dothis [![Travis-CI Build Status](https://travis-ci.org/lemna/dothis.svg?branch=master)](https://travis-ci.org/lemna/dothis) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/apixoxrhv382cpst?svg=true)](https://ci.appveyor.com/project/lemna/dothis)
 
 
 **dothis** - a very basic "To Do" List for Rstudio.
